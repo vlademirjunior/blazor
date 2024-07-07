@@ -62,7 +62,7 @@ dotnet new sln -n ToDoApp
 
 # Create a new Blazor Server project
 dotnet new blazor -n FrontEnd --interactivity --help
-dotnet new blazor -n FrontEnd --interactivity None --no-https
+dotnet new blazor -n FrontEnd --interactivity None
 
 # Add the new Blazor Server project to the solution
 dotnet sln ToDoApp.sln add FrontEnd/FrontEnd.csproj
