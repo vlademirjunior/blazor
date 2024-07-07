@@ -13,8 +13,9 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Title</th>
-                <th>Is Done</th>
+                <th>Name</th>
+                <th>Date Complete</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -22,8 +23,21 @@
             {
                 <tr @key="item.Id">
                     <td>@item.Id</td>
-                    <td>@item.Name</td>
-                    <td>@item.IsCompleted</td>
+                    <td>
+                        @if (item.IsCompleted)
+                        {
+                            <del><input type="text" disabled class="form-control" @bind-value="item.Name"></del>
+                        }
+                        else
+                        {
+                            <input type="text" class="form-control" @bind-value="item.Name">
+                        }
+                    </td>
+                    <td>@item.DateCompleted.ToLongDateString()</td>
+                    <td>
+                        <input type="checkbox" class="form-check-input" @bind-value="item.IsCompleted"
+                        checked="@item.IsCompleted">
+                    </td>
                 </tr>
             }
         </tbody>
@@ -46,4 +60,6 @@ else
         ToDoItemsRepository.AddItem(new ToDoItem { Name = "New Task", IsCompleted = false });
         items = ToDoItemsRepository.GetItems();
     }
+
+
 }
