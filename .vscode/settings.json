@@ -1,0 +1,28 @@
+{
+    "terminal.integrated.profiles.linux": {
+        "Nu": {
+            "path": "/usr/local/bin/nu"
+        }
+    },
+    "terminal.integrated.defaultProfile.linux": "Nu",
+    "dotnet.defaultSolution": "SampleApp/SampleApp.sln",
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "conventionalCommits.scopes": [
+        "Environment"
+    ],
+    "cSpell.words": [
+        "Antiforgery",
+        "blazor",
+        "HSTS",
+        "dotnettools",
+        "devcontainers",
+        "dotnetools",
+        "csdevkit",
+        "vivaxy",
+        "devcontainer",
+        "eitsupi",
+        "nushell",
+        "Codespaces",
+    ]
+}
