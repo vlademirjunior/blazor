@@ -1,0 +1,20 @@
+﻿<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Date Complete</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <Virtualize Items="Items" Context="item">
+            <ToDoRow Item="item" />
+        </Virtualize>
+    </tbody>
+</table>
+
+@code {
+    [Parameter]
+    public List<ToDoItem> Items { get; set; } = new List<ToDoItem>();
+}

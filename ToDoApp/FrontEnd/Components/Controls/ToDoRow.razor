@@ -1,0 +1,22 @@
+﻿<tr @key="Item.Id">
+    <td>@Item.Id</td>
+    <td>
+        @if (Item.IsCompleted)
+        {
+            <del><input type="text" disabled class="form-control" @bind-value="Item.Name"></del>
+        }
+        else
+        {
+            <input type="text" class="form-control" @bind-value="Item.Name">
+        }
+    </td>
+    <td>@Item.DateCompleted.ToLongDateString()</td>
+    <td>
+        <input type="checkbox" class="form-check-input" @bind-value="Item.IsCompleted" checked="@Item.IsCompleted">
+    </td>
+</tr>
+
+@code {
+    [Parameter]
+    public ToDoItem Item { get; set; } = new ToDoItem();
+}

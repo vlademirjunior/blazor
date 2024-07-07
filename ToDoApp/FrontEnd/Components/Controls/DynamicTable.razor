@@ -1,0 +1,33 @@
+﻿@typeparam TItem
+
+<table class="table">
+    <thead>
+        <tr>
+            @foreach (var header in Headers)
+            {
+                <th>@header</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        <Virtualize Items="this.Rows" Context="row">
+            <tr>
+                @foreach (var cell in row)
+                {
+                    <td>@CellTemplate(cell)</td>
+                }
+            </tr>
+        </Virtualize>
+    </tbody>
+</table>
+
+@code {
+    [Parameter]
+    public List<string> Headers { get; set; } = new  List<string>();
+
+    [Parameter]
+    public List<List<TItem>> Rows { get; set; } = new List<List<TItem>>();
+
+    [Parameter]
+    public RenderFragment<TItem> CellTemplate { get; set; } = null!;
+}

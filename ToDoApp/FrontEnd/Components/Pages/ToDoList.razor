@@ -1,4 +1,5 @@
 ﻿@page "/todolist"
+@using FrontEnd.Components.Controls
 
 @rendermode InteractiveServer
 
@@ -7,41 +8,10 @@
 
 <button class="btn btn-primary" @onclick="AddTask">Add To Do</button>
 
+@* <DynamicTable Headers="tableHeaders" Rows="tableRows" CellTemplate="cellTemplate" /> *@
 @if (items != null)
 {
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Date Complete</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in items)
-            {
-                <tr @key="item.Id">
-                    <td>@item.Id</td>
-                    <td>
-                        @if (item.IsCompleted)
-                        {
-                            <del><input type="text" disabled class="form-control" @bind-value="item.Name"></del>
-                        }
-                        else
-                        {
-                            <input type="text" class="form-control" @bind-value="item.Name">
-                        }
-                    </td>
-                    <td>@item.DateCompleted.ToLongDateString()</td>
-                    <td>
-                        <input type="checkbox" class="form-check-input" @bind-value="item.IsCompleted"
-                        checked="@item.IsCompleted">
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    <ToDoTable Items="items" />
 }
 else if (items != null && items.Count == 0)
 {
@@ -54,12 +24,61 @@ else
 
 @code {
     private List<ToDoItem> items = ToDoItemsRepository.GetItems();
-    
+
     private void AddTask()
     {
         ToDoItemsRepository.AddItem(new ToDoItem { Name = "New Task", IsCompleted = false });
         items = ToDoItemsRepository.GetItems();
     }
 
+    @* private List<string> tableHeaders = new List<string> { "Id", "Title", "Is Completed" };
 
+private List<List<object>> tableRows = new List<List<object>>();
+
+protected override void OnInitialized()
+{
+var items = ToDoItemsRepository.GetItems();
+tableRows = items.Select(item => new List<object> { item.Id, item.Name, item.IsCompleted }).ToList();
+}
+
+private RenderFragment<object> cellTemplate = (cellData) => __builder =>
+{
+if (cellData is bool)
+{
+__builder.AddContent(0, ((bool)cellData) ? "Yes" : "No");
+}
+else
+{
+__builder.AddContent(0, cellData?.ToString());
+}
+}; *@
+    @*
+private List<string> tableHeaders = new List<string> { "Column 1", "Column 2", "Column 3" };
+private List<List<ToDoItem>> tableRows = new List<List<ToDoItem>>
+{
+
+new List<ToDoItem> {
+new ToDoItem { Id = 1, Name = "Row 1, Cell 1" },
+new ToDoItem { Id = 2, Name = "Row 1, Cell 2" },
+new ToDoItem { Id = 3, Name = "Row 1, Cell 3" }
+},
+
+new List<ToDoItem> {
+new ToDoItem { Id = 4, Name = "Row 2, Cell 1" },
+new ToDoItem { Id = 5, Name = "Row 2, Cell 2" },
+new ToDoItem { Id = 6, Name = "Row 2, Cell 3" }
+},
+
+new List<ToDoItem> {
+new ToDoItem { Id = 7, Name = "Row 3, Cell 1" },
+new ToDoItem { Id = 8, Name = "Row 3, Cell 2" },
+new ToDoItem { Id = 9, Name = "Row 3, Cell 3" }
+},
+// Add more rows as needed
+};
+
+private RenderFragment<ToDoItem> cellTemplate = (data) => __builder =>
+{
+__builder.AddContent(0, $"{data.Id}: {data.Name}");
+}; *@
 }

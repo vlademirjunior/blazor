@@ -2,6 +2,11 @@
 
 public class ToDoItem
 {
+    public ToDoItem()
+    {
+        IsCompleted = false;
+    }
+
     public int Id { get; set; }
     public string Name { get; set; } = "";
     private bool _isCompleted;
