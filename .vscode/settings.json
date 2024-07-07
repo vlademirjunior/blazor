@@ -5,7 +5,7 @@
         }
     },
     "terminal.integrated.defaultProfile.linux": "Nu",
-    "dotnet.defaultSolution": "SampleApp/SampleApp.sln",
+    "dotnet.defaultSolution": "ToDoApp/ToDoApp.sln",
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
     "conventionalCommits.scopes": [

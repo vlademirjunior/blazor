@@ -47,9 +47,9 @@ You can also run this repository locally by following these instructions:
 - kill -9 PID
 
 # Structure
-- BlazorJourney.sln
-- Backend/
-- Frontend/
+- ToDoApp.sln
+- BackEnd/
+- FrontEnd/
 
 # Check version
 dotnet --version
@@ -58,13 +58,14 @@ dotnet --version
 dotnet new list
 
 # Create a new solution
-dotnet new sln -n BlazorJourney
+dotnet new sln -n ToDoApp
 
 # Create a new Blazor Server project
-dotnet new blazor -n Frontend
+dotnet new blazor -n FrontEnd --interactivity --help
+dotnet new blazor -n FrontEnd --interactivity None --no-https
 
 # Add the new Blazor Server project to the solution
-dotnet sln BlazorJourney.sln add Frontend/Frontend.csproj
+dotnet sln ToDoApp.sln add FrontEnd/FrontEnd.csproj
 
 # Restores the dependencies and tools of a project.
 dotnet restore
@@ -73,7 +74,7 @@ dotnet restore
 dotnet run
 
 # Clean and build the solution
-dotnet clean BlazorJourney.sln; dotnet build BlazorJourney.sln
+dotnet clean ToDoApp.sln; dotnet build ToDoApp.sln
 
 # Blazor Templates
 - Blazor Web App project template: blazor
