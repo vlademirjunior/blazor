@@ -1,4 +1,4 @@
-﻿<table class="table">
+﻿<table class="table @tableColor">
     <thead>
         <tr>
             <th>Id</th>
@@ -16,5 +16,17 @@
 
 @code {
     [Parameter]
-    public List<ToDoItem> Items { get; set; } = new List<ToDoItem>();
+    public List<ToDoItem>? Items { get; set; }
+    private string tableColor = "table-dark";
+    
+    protected override void OnParametersSet()
+    {
+        if (Items != null && Items.Count < 10)
+        {
+            tableColor = "table-light";
+        } else if (Items != null && Items.Count >= 10)
+        {
+            tableColor = "table-dark";
+        }
+    }
 }

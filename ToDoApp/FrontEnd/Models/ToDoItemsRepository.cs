@@ -23,6 +23,7 @@ public static class ToDoItemsRepository
         if (items.Count == 0)
         {
             item.Id = 1;
+            items.Add(item);
         }
         else
         {
